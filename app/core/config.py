@@ -16,6 +16,7 @@ class Settings(BaseSettings):
     groq_model: str = "llama-3.1-8b-instant"
 
     google_service_account_file: str = "service-account.json"
+    google_service_account_json: str = "" # raw JSON contents, used on Render
     google_sheet_id: str = ""
 
     zapier_hot_webhook_url: str = ""
