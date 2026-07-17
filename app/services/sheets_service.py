@@ -1,4 +1,3 @@
-import json
 import logging
 from datetime import datetime, timezone
 from functools import lru_cache
@@ -32,19 +31,19 @@ SHEET_HEADERS = [
 @lru_cache
 def _get_worksheet() -> gspread.Worksheet:
     settings = get_settings()
-    # credentials = Credentials.from_service_account_file(
-    #     settings.google_service_account_file, scopes=SCOPES
-    # )
+    credentials = Credentials.from_service_account_file(
+        settings.google_service_account_file, scopes=SCOPES
+    )
     
-    if settings.google_service_account_json:
-        # Render / most PaaS free tiers: paste the JSON key's contents
-        # directly into an env var instead of uploading a file.
-        info = json.loads(settings.google_service_account_json)
-        credentials = Credentials.from_service_account_info(info, scopes=SCOPES)
-    else:
-        credentials = Credentials.from_service_account_file(
-            settings.google_service_account_file, scopes=SCOPES
-        )
+    # if settings.google_service_account_json:
+    #     # Render / most PaaS free tiers: paste the JSON key's contents
+    #     # directly into an env var instead of uploading a file.
+    #     info = json.loads(settings.google_service_account_json)
+    #     credentials = Credentials.from_service_account_info(info, scopes=SCOPES)
+    # else:
+    #     credentials = Credentials.from_service_account_file(
+    #         settings.google_service_account_file, scopes=SCOPES
+    #     )
 
     client = gspread.authorize(credentials)
     spreadsheet = client.open_by_key(settings.google_sheet_id)

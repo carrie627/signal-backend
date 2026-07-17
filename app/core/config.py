@@ -7,7 +7,7 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
     webhook_secret: str
-    embedding_model_name: str = "all-MiniLM-L6-v2"
+    embedding_model_name: str = "sentence-transformers/all-MiniLM-L6-v2"
 
     hot_threshold: int = 80
     warm_threshold: int = 50
@@ -16,7 +16,7 @@ class Settings(BaseSettings):
     groq_model: str = "llama-3.1-8b-instant"
 
     google_service_account_file: str = "service-account.json"
-    google_service_account_json: str = "" # raw JSON contents, used on Render
+    # google_service_account_json: str = "" # raw JSON contents, used on Render
     google_sheet_id: str = ""
 
     zapier_hot_webhook_url: str = ""
