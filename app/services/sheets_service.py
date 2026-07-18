@@ -88,3 +88,9 @@ def append_lead_row(
         # Intentionally broad: a Sheets outage must never crash the request
         # cycle since this always runs after the response is already sent.
         logger.exception("Failed to append lead row to Google Sheets")
+
+
+def get_all_leads():
+    worksheet =  _get_worksheet()
+    data = worksheet.get_all_records()
+    return data
