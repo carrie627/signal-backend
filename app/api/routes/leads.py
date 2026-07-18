@@ -16,8 +16,6 @@ router = APIRouter()
 def get_leads():
     # for the demo purpose verify_webhook_secret dependency used to protect route.
     data = sheets_service.get_all_leads()
-    print(data)
-    print(type(data[0]))
     return data
 
 
